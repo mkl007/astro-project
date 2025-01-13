@@ -1,20 +1,54 @@
 ---
+import '../styles/global.css';
+
 import NavLinks from "../components/NavLinks.astro";
-import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
+
+const pageTile = "About me";
+const identity = {
+    firstName: "Maikel Emeterio",
+    country: "Dominican Republic",
+    occupation: "Customer Advocate",
+    hobbies: ["Music", "Coding", "Reading"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "TypeScript"];
+const happy = true;
+const finished = false;
+const goal = 3;
 ---
 
 <Layout>
-    <div>
-        <NavLinks/>
-        <h1>About me</h1>
-        <h2>... and my astro page</h2>
+    <style>
+        h1 {
+            color: purple;
+            font-size: 4rem;
+        }
+    </style>
+    <div class="container">
+        <NavLinks />
+        <h1>{pageTile}</h1>
+        <h2>Here's something about me:</h2>
 
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum,
-            porro! Excepturi odio nihil velit praesentium quasi in modi
-            architecto saepe consequuntur, nulla, debitis quaerat doloribus at
-            reprehenderit eum, deserunt sit?
-        </p>
+        <ul>
+            <li>My name is {identity.firstName}.</li>
+            <li>
+                I live in {identity.country} and I work as a {
+                    identity.occupation
+                }.
+            </li>
+            {
+                identity.hobbies.length >= 2 && (
+                    <li>
+                        Two of my hobbies are: {identity.hobbies[0]} and{" "}
+                        {identity.hobbies[1]}
+                    </li>
+                )
+            }
+        </ul>
+        <p>My skills are:</p>
+        <ul>
+            {skills.map((skill) => <li>{skill}</li>)}
+        </ul>
     </div>
 </Layout>
